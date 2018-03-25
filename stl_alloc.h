@@ -226,12 +226,6 @@ typedef malloc_alloc alloc;
 typedef __default_alloc_template<__NODE_ALLOCATOR_THREADS, 0> alloc;
 #endif
 
-/*
- * 内存基本处理工具
- */
-template<class InputIterator, class ForwardIterator>
-ForwardIterator
-uninitialized_copy(InputIterator first, InputIterator last, ForwardIterator result);
 
 
 //////
