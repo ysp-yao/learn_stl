@@ -118,7 +118,19 @@ void vector<T, Alloc>::insert_aux(iterator postion, const T& x) {
 
 template<class T, class Alloc>
 void vector<T, Alloc>::insert(iterator position, size_type n, const T& x) {
-
+  if (n != 0) {
+    if (size_type(end_of_storage-finish) >= n) {
+      T x_copy = x;
+      const size_type elems_after = finish - position;
+      iterator old_finish = finish;
+      if (elems_after > n) {
+        uninitialized_copy(finish-n, finish, finish);
+        finish += n;
+        copy_backward(position, old_finish-n, old_finish);
+        fill(postion, position+n, x_copy);
+      }
+    }
+  }
 
 
   
